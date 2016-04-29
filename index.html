@@ -1,0 +1,96 @@
+<html>
+<head>
+	<title>Markdown Test</title>
+	<!--<link rel="stylesheet" href="lib/highlight.js/src/styles/dracula.css">-->
+	<link rel="stylesheet" href="lib/highlight.js/src/styles/default.css">
+	<!--<script src="/lib/highlight.js/src/highlight.js"></script>-->
+	<script src="lib/highlight.js/build/highlight.pack.js"></script>
+	<!-- Highlight any static <pre><code></code></pre> blocks. -->
+	<script>hljs.initHighlightingOnLoad();</script>
+	<script src="lib/showdown/dist/showdown.js"></script>
+	<script src="lib/showdown-codehl.js"></script>
+	<script>
+	// Called when markdownForm is submitted.
+	function onConvertMarkdown() {
+		// Create a Showdown markdown to HTML Converter object with 
+		// HighlightJS extension.
+		var converter = new showdown.Converter({extensions: ['codehighlight']});
+		//var converter = new showdown.Converter();
+		
+		// Convert form textbox markdown to HTML & display it.
+		var markdown = document.getElementById("markdownTxtBox").value;
+		var html = converter.makeHtml(markdown);
+		document.getElementById("htmlContent").innerHTML = html;
+		// Do not change page after submitting.
+		return false;
+	}
+
+	// Called when the <body> is loaded.
+	function onLoad() {
+		var converter = new showdown.Converter({extensions: ['codehighlight']});
+
+		// Convert static markdown in <div> to HTML.
+		var markdown = document.getElementById("markdownContent").innerHTML;
+		var html = converter.makeHtml(markdown);
+		document.getElementById("markdownContent").innerHTML = html;
+	}
+	</script>
+</head>
+<body onload="onLoad()">
+	<!-- Markup Input -->
+	<form id="markdownForm" onsubmit="return onConvertMarkdown();">
+		<b>Enter Markdown:</b><br/>
+		<textarea id="markdownTxtBox" rows="13" cols="75">Enter markdown here...</textarea><br/>
+		<input id="submitBtn" type="submit" value="Convert Markdown to HTML"/>
+	</form>
+	<hr/>
+	<!-- Output HTML -->
+	<div id="htmlContent"></div>
+	<hr>
+	<p>Highlight.js Test:</p>
+	<pre><code>
+	function onConvertMarkup() {
+		var converter = new showdown.Converter();
+		var markup = document.getElementById("markupTxtBox").value;
+		var html = converter.makeHtml(markup);
+		document.getElementById("htmlContent").innerHTML = html;
+		return false;
+	}
+	</code></pre>
+	<hr>
+	<p>Showdown Test:</p>
+	<div id="markdownContent">
+
+# Using Showdown
+
+To use the showdown markdown to HTML converter you must do the following:
+
+  1. Create a Converter object.
+    * Optionally provide Converter any Showdown extensions.
+  2. Call converter.makeHtml(MARKDOWN) where MARKDOWN is the markdown syntax text to convert to HTML.
+  3. Display the resulting HTML.
+
+Javascript using a `backquote` ( ` ):
+```
+function onConvertMarkup() {
+		var converter = new showdown.Converter();
+		var markup = document.getElementById("markupTxtBox").value;
+		var html = converter.makeHtml(markup);
+		document.getElementById("htmlContent").innerHTML = html;
+		return false;
+	}
+```
+
+Javascript using indentation:
+
+    function onConvertMarkup() {
+		var converter = new showdown.Converter();
+		var markup = document.getElementById("markupTxtBox").value;
+		var html = converter.makeHtml(markup);
+		document.getElementById("htmlContent").innerHTML = html;
+		return false;
+    }
+
+	</div>
+</body>
+</html>
