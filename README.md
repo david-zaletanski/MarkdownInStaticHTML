@@ -1,3 +1,5 @@
-# Markdown-Codehighlight
+# MarkdownInStaticHTML
 
-A demo project that utilizes the Showdown and HighlightJS frameworks to enable markdown to HTML conversion and code highlighting.
+**README Updated:** 1/28/18
+
+A simple demo of how to create static HTML pages with content written in Markdown, with full code highlighting support, using Javascript. Two libraries are used **ShowdownJS** and **HighlightJS** to implement this.
